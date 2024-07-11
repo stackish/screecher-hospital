@@ -1,0 +1,104 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %} Screecher Hospital {% endblock title %} </title>
+     <!--Bootstrap-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+  <!--Fontawesome cdn link-->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+   <!--Static styles-->
+
+   <link rel="stylesheet" href="{% static "css/styles.css" %}">
+
+
+<!--Logo-->
+<link rel="shortcut icon" href="{% static  'img/hospital.ico' %}">
+<!--Static css-->
+</head>
+  <body>
+<div class="wrapper">
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="col-sm">
+    <a class="navbar-brand flex-grow-1" style="text-align: center;color: #fff; margin-left: 25px;" href="{% url 'frontend' %}">
+      {% block navbar-content %}
+          <i class="fas fa-briefcase-medical"></i> &nbsp;&nbsp; HMO Screecher
+      {% endblock navbar-content %}
+        </a>
+      </div>
+<!--Time -->
+
+ {% block time %}
+ 
+ {% endblock time %}
+      <div class="col-sm">
+        {% block nav-btn %}
+        <a href="{% url 'backend' %}" class="btn btn-outline-info border-light btn-sm" id="btn-nav">Login</a>
+        {% endblock nav-btn %}
+      </div>
+    </nav> 
+  </header>
+
+<!-- content --> 
+ 
+
+{% block content %} {% endblock content %}
+
+</div>  <!-- End of Wrapper -->
+
+<footer class="bg-dark text-center text-lg-start text-light" id="footer">
+
+  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+    Copyright &copy; {% now "Y" %} All rights reserved | 
+    <i class="text-danger fas fa-heartbeat fa-fade" style="font-size: 15px;"></i>
+    <a href="#" class="text-decoration-none" style="color:#0dcaf0;">Screecher</a>
+  </div>
+</footer>
+
+<!--mODAL-->
+
+<!-- Button trigger modal -->
+
+
+<!-- Modal -->
+<div class="modal fade" id="logoutModal" tabindex="-1" aria-labelledby="logoutModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="logoutModalLabel"> <i class="fas fa-sign-out-alt"></i>&nbsp;&nbsp;Logout </h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center">
+        <span class="text-danger"><i class="fas fa-sign-out-alt fa-3x mt-4"></i></span>
+        <div class="text-danger mt-4 mb-4">Are you sure you want to exit the system?</div>
+
+        
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <a class="btn btn-outline-danger" href="{% url 'logout' %}">Logout</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+    <!--jQuery-->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+ <!--Phone mask -->
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/5.0.8/jquery.inputmask.min.js" integrity="sha512-efAcjYoYT0sXxQRtxGY37CKYmqsFVOIwMApaEbrxJr4RwqVVGw8o+Lfh/+59TU07+suZn1BWq4fDl5fdgyCNkw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<!--fontawesome cdn js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/js/all.min.js" integrity="sha512-GWzVrcGlo0TxTRvz9ttioyYJ+Wwk9Ck0G81D+eO63BaqHaJ3YZX9wuqjwgfcV/MrB2PhaVX9DkYVhbFpStnqpQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+ 
+<!--Sweetalert -->
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<!--Static scripts-->
+ <script src="{% static "js/scripts.js" %}">
+ </script>
+</body>
+</html>

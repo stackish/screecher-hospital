@@ -1,0 +1,63 @@
+{% extends "App/add.html" %}
+
+
+<!--Title -->
+{% block title %} Patient | Screecher  {% endblock title %}
+
+<!--Current time-->
+{% block time %}
+     <div class="col-sm">
+        <center>
+            <span style="color:#89cff0" id="clock"></span>
+        </center>
+
+     </div>
+
+{% endblock time %}
+
+<!--Form action-->
+
+{% block form-action %} action="{% url 'edit_patient' patient.id  %}"{% endblock form-action %}
+
+<!--Navbar title-->
+{% block navbar-content %}
+<i class="fas fa-user-edit"></i> &nbsp;&nbsp; {{patient.name | title }}
+{% endblock navbar-content %}
+
+
+{% block card-title %}
+<span class="text-dark">Registered at : </span><strong>{{patient.created_at | date:'m/d/Y (H:i)' }}</strong>
+{% endblock card-title %}
+
+<!--Submit button -->
+{% block btn-content %} <i class="fas fa-hdd"></i> &nbsp; Save {% endblock btn-content %} 
+
+<!--Reset Button -->
+
+{% block reset-button %}
+<button type="reset" class="btn btn-secondary btn-sm"><i class="fas fa-sync-alt"></i>&nbsp; &nbsp; Reset</button>
+{% endblock reset-button %}
+
+<!--EXtensions-->
+
+{% block value-name %} value="{{patient.name }}"{% endblock value-name %}
+
+{% block value-phone %} value="{{patient.phone }}"{% endblock value-phone %}
+
+{% block value-email %} value="{{patient.email }}"{% endblock value-email %}
+
+{% block value-age %} value="{{patient.age }}"{% endblock value-age %}
+
+{% block value-gender %} value="{{patient.gender }}"{% endblock value-gender %}
+
+{% block option %}
+<option style="background-color: #d3d3d3; color: #007bff;">{{patient.gender}}</option>
+{% endblock option %}
+
+
+
+{% block value-note %}{{patient.note }}{% endblock value-note %}
+
+<!--Block hidden -->
+
+{% block hidden %}  <input type="hidden" value="{{ patient.id }}"  name="id" >{% endblock hidden %}

@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+
+{% block title %}
+Sign up | Resources
+{% endblock title %}
+
+
+
+{% block navbar-title %}
+<a class="navbar-brand resources" href="{% url 'home' %}"><i class="fa-solid fa-splotch"></i> &nbsp; &nbsp; Signup</a>
+{% endblock navbar-title %}
+
+{% block navbar-search %}
+
+{% endblock navbar-search %}
+
+{% block navbar-list %}
+<a class="navbar-brand resources ui inverted green button" href="{% url 'home' %}" style="position: absolute; right:5%; top:-5%;">Go back</a>
+{% endblock navbar-list %}
+
+{% block content %}
+
+<div class="container mt-4  " >
+    <div class="row justify-content-center align-item-center " style="margin-bottom: 5em;">
+        <div class="col-md-8 col-8">
+            <h2 class="card text-center p-2 mt-2 text-uppercase mb-2 resources">signup</h2>
+            
+
+            <form method="POST" class="p-4 card" autocomplete="off" novalidate>
+                {% csrf_token %}
+        
+                {{form | crispy}}
+              
+            
+            <button type="submit" class="btn btn-outline-success mt-3 texts" style="width: 100px;">Submit</button>
+            </form>
+            
+        </div>
+        <div class="col-md-8 col-8 ">
+            <p class="p-2 texts" style="font-size: 14px;">Already have an account? &nbsp;<a href="{% url 'login' %}" class="text-decoration-none fw-bolder">Login</a></p>
+                    </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+{% endblock content %}

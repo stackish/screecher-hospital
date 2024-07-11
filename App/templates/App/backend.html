@@ -1,0 +1,184 @@
+{% extends "App/base.html " %}
+
+<!--Title -->
+{% block title %} Patients | Screecher  {% endblock title %}
+
+ {% block navbar-content %}
+ <i class="fas fa-hospital-user"></i> &nbsp;&nbsp; Patients
+ {% endblock navbar-content %}
+
+<!--Time -->
+
+{% block time %}
+     <div class="col-sm">
+        <center>
+            <span style="color:#89cff0" id="clock"></span>
+        </center>
+
+     </div>
+
+{% endblock time %}
+
+{% block nav-btn %}
+<a data-bs-toggle="modal" data-bs-target="#logoutModal" class="btn btn-outline-danger text-light border-light btn-sm" id="btn-nav">Logout</a>
+{% endblock nav-btn %}
+
+
+    # ====================
+    #  PAGE CONTENT
+    # ====================
+<!--Page content -->
+{% block content %}
+
+<div class="container">
+    <br><br>
+
+    <div class="d-flex justify-content-between">
+        <!--Column 1 Add patient-->
+        <a href="{% url 'add_patient' %}" class="btn btn-outline-primary btn-sm"><i class="fas fa-plus"></i>&nbsp; &nbsp;Add Patient</a>
+
+        
+        <!--Column 2 Get Users-->
+        <span>
+            Welcome: <strong><span class="text-primary">{{user.get_full_name}}</span></strong>
+        </span>
+    </div>
+<!--Search form-->
+    <form>
+        <div class="input-group input-group-sm mb-3 mt-4">
+            <input type="text" name="q" class="form-control" placeholder="Search for..." value="{{ request.GET.q }}"> 
+            <button class="btn btn-secondary"><i class="fas fa-search"></i></button>
+            <a href="{% url 'backend' %}" class="btn btn-dark" style="margin-left: 2px;"><i class="fas fa-sync-alt"></i></a>
+
+        </div>
+    </form>
+    <center>
+        <table class="table table-bordered table-sm mt-4" style="text-align: center; font-size: 14px;">
+            <thead class="table-secondary">
+                <tr>
+                    <th style="width: 21%;">Name</th>
+                    <th style="width: 15%;">Phone</th>
+                    <th style="width: 21%;">Email</th>
+                    <th style="width: 8%;">Age</th>
+                    <th style="width: 7%;">Gender</th>
+                    <th style="width: 18%;">Registered</th>
+                    <th style="width: 10%;" colspan="2">Actions</th>
+                </tr>      
+            </thead>
+            <!--DATA FROM BACKEND-->
+   {% for patient in patients %}
+
+
+<!-- Modal -->
+<div class="modal fade" id="deleteModal{{ patient.pk }}" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="deleteModalLabel"> <i class="fas fa-trash-alt"></i> &nbsp; &nbsp; Delete patient</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center">
+        <div class="text-center text-danger"><i class="far fa-times-circle fa-5x mb-4 mt-2"></i></div>
+        <div class="text-center text-danger">
+            <span>Are you sure you want to delete this patient ???</span>
+            <div class="text-dark mt-3 mb-2">Patient: <strong> {{ patient.name | title }}</strong></div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+        <a href="{% url 'delete_patient' patient.id %}" class="btn btn-outline-danger">Delete</a>
+      </div>
+    </div>
+  </div>
+</div>
+           <tr id="chk_td">
+            <td>{{patient.name | title }}</td>
+            <td>{{patient.phone}}</td>
+            <td>{{patient.email}}</td>
+            <td>{{patient.age}}</td>
+            <td>{{patient.gender}}</td>
+            <td>{{patient.created_at | date:'m/d/Y (H:i)' }}</td>
+            <td>
+                <a href="{% url 'patient' patient.id  %}"  class="btn btn-primary" title="Edit patient">
+                    <i class="fas fa-pen"></i>
+                </a>
+            </td>
+            <td>
+                <a data-bs-toggle="modal" data-bs-target="#deleteModal{{patient.pk}}" class="btn btn-secondary" title="Delete patient">
+                    <i class="fas fa-trash-alt"></i>
+                </a>
+            </td>
+        
+        </tr>
+{% empty %}
+<tr>
+   {% if request.GET.q %}
+   <td colspan="7" class="text-danger fw-bolder mt-2 mb-2"><strong class="text-primary">{{request.GET.q}}</strong>&nbsp; Not found </td>
+
+   {% else %}
+
+   <td colspan="7" class="text-danger fw-bolder mt-2 mb-2">Patients' data not available data</td>
+
+   {% endif %}
+</tr>
+
+
+{% endfor %}
+ 
+        </table>
+    </center>
+
+
+    <!-- Pagination -->
+
+
+    <nav class="mt-4" aria-label="Page navigation example">
+        {% if patients.has_other_pages %}
+        <ul class="pagination justify-content-left">
+{% if patients.has_previous %}
+            <a href="?page=1" class="btn btn-outline-primary mb-4" style="width: 60px; border-radius: 1px; border: 1px solid #d3d3d3;">First</a>
+            <li class="page-item"><a href="?page={{patients.previous_page_number}}" class="page-link"><i class="fas fa-angle-double-left"></i></a></li>
+            {% else %}
+            <li class="page-item disabled"></li>
+            {% endif %}
+            {% for i in patients.paginator.page_range %}
+            {% if patients.number == i %}
+            <li class="page-item active"><span class="page-link">{{ i }}<span class="sr-only"></span></span></li>
+            {% else %}
+            <li class="page-item"><a href="?page={{ i }}" class="page-link">{{  i   }}</a></li>
+            {% endif %}
+            {% endfor %}
+
+            {% if patients.has_next %}
+            <li class="page-item"><a href="?page={{patients.next_page_number }}" class="page-link"><i class="fas fa-angle-double-right"></i></a></li>
+            <a href="?page={{patients.paginator.num_pages}}" class="btn btn-outline-primary mb-4" style="width: 60px; border-radius: 1px; border: 1px solid #d3d3d3; border-left: none;">Last</a>
+            {% else %}
+               <li class="page-item disabled"></li>
+
+            {% endif %}
+
+        </ul>
+        {% endif %}
+    </nav>
+
+
+
+    <!--Messages from backend-->
+
+
+    {% for message in messages %}
+    {% if message.tags == "success" %}
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    
+    <script>
+        var m = "{{message}}";
+        swal("Perfect !!", m, "success");
+    </script>
+    {% endif %}
+
+    {% endfor %}
+</div>  <!--End of container-->
+<!-- show this if no result is returned from the search   -->
+<span class="text-danger"></span>
+
+{% endblock content %}
