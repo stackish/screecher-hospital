@@ -50,7 +50,12 @@ def backend(request):
 @login_required(login_url="login")
 def add_patient(request):
     if request.method == 'POST':
-        if request.POST.get('name') and request.POST.get('phone') and request.POST.get('email') and request.POST.get('age') and request.POST.get('gender') or request.POST.get('note'):
+        email = request.POST[~'email']
+        if Patient.objects.filter(email=email).exists():
+            messages.error(request,"Email already registered!!")
+            return render(request,"App/add.html")
+
+        elif request.POST.get('name') and request.POST.get('phone') and request.POST.get('email') and request.POST.get('age') and request.POST.get('gender') or request.POST.get('note'):
             patient = Patient()
             patient.name = request.POST.get('name')
             patient.phone = request.POST.get('phone')

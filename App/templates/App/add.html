@@ -110,4 +110,22 @@
     </div>
 </div>
 
+
+
+    <!--Messages from backend-->
+
+
+    {% for message in messages %}
+    {% if message.tags == "error" %}
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    
+    <script>
+        var m = "{{message}}";
+        swal("Denied !!", m, "error");
+    </script>
+    {% endif %}
+
+    {% endfor %}
+    <br><br><br><br>
+
 {% endblock content %}

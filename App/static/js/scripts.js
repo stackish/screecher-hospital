@@ -126,6 +126,7 @@ $("#age").keyup(function(){
 
 $(document).ready(function(){
     $("#phone").inputmask("(99) 9999-9999",{"onincomplete": function(){
+        $("#phone").val("");
         swal("Oops!!","Incomplete phone, Review","error");
         return false;
     }});
