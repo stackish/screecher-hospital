@@ -8,7 +8,9 @@ from django.contrib.auth.forms import AuthenticationForm
 
 
 class CustomUserCreationForm(UserCreationForm):
+    pass
     # Validations
+    """
     email = forms.EmailField(label="Email address",min_length=8,max_length=50,validators=[RegexValidator(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$',message="Put a valid email address")],
     widget=forms.EmailInput(attrs={'placeholder':'Email address'}))
 
@@ -45,10 +47,23 @@ class CustomUserCreationForm(UserCreationForm):
         super().__init__(*args,**kwargs)
         self.fields['password1'].widget.attrs.update({'placeholder':'Password'})
         self.fields['password2'].widget.attrs.update({'placeholder':'Confirm password'})
-
+    """
 
 class CustomUserChangeForm(UserChangeForm):
+    #upon change the email is returned as lowercase
+    def clean_email(self,*args,**kwargs):
+        email = self.cleaned_data.get("email")
+        
+        return email.lower()
 
+    #upon change the username is returned as lowercase
+    def clean_username(self,*args,**kwargs):
+        username = self.cleaned_data.get("username")
+        return username.lower()
+
+
+
+"""
      # Validations
     email = forms.CharField(label="Email address",min_length=8,max_length=50,validators=[RegexValidator(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$',message="Put a valid email address")],
     widget=forms.TextInput(attrs={'placeholder':'Email address'}))
@@ -119,7 +134,7 @@ class LoginForm(AuthenticationForm):
 
   
 
-
+"""
 
    
 

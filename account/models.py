@@ -17,6 +17,8 @@ class CustomUser(AbstractUser):
     def clean(self):
         self.first_name = self.first_name.capitalize()
         self.last_name = self.last_name.capitalize()
+        self.email = self.email.lower()
+        self.username = self.username.lower()
 
 
     def __str__(self):

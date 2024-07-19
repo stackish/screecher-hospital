@@ -195,3 +195,18 @@ var verify = $("#chk_td").length;
     if (verify == 0){
         $("#no-data").text("No patient found");
     } 
+
+
+
+// email address to lowercase
+
+$(document).ready(function(){
+ $("#email").keyup(function(){
+    this.value = this.value.toLowerCase();
+ });
+
+});
+
+
+
+
