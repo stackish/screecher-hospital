@@ -39,7 +39,7 @@
 
         
         <!--Column 2 Get Users-->
-        <span>
+        <span class="welcome">
             Welcome: <strong><span class="text-primary">{{user.get_full_name}}</span></strong>
         </span>
     </div>
@@ -119,11 +119,11 @@
 {% empty %}
 <tr>
    {% if request.GET.q %}
-   <td colspan="7" class="text-danger fw-bolder mt-2 mb-2"><strong class="text-primary">{{request.GET.q}}</strong>&nbsp; Not found </td>
+   <td colspan="7" class="text-danger fw-bolder mt-2 mb-2 "><strong class="text-primary">{{request.GET.q}}</strong>&nbsp; Not found </td>
 
    {% else %}
 
-   <td colspan="7" class="text-danger fw-bolder mt-2 mb-2">Patients' data not available</td>
+   <td colspan="7" class="text-danger fw-bolder mt-2 mb-2 ">Patients' data not available</td>
 
    {% endif %}
 </tr>

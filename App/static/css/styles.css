@@ -59,6 +59,18 @@ Patient (add.html)
 	font-size: 22px;
 }
 
+
+/* ============================================================
+# BASE  
+==============================================================*/
+
+
+#nav-content{
+		text-align: center;
+		color: #fff;
+		margin-left: 25px;
+		}
+
 /* ============================================================
 # LOGIN  
 ==============================================================*/
@@ -96,6 +108,14 @@ Patient (add.html)
 
 
 @media(max-width: 1024px) {
+
+
+
+
+
+
+
+
 	/* TABLE */
 
 	.table thead {
@@ -200,5 +220,21 @@ Patient (add.html)
 	font-size:15px;
 	margin-left: 15px
 }
-	
+
+#heart{
+	font-size: 12px;
+}
+.txt-sm{
+	font-size: 12px;
+}
+
+/*   Time is hidden   */
+#clock{
+	display: none;
+}
+/*   Welcome small font   */
+.welcome{
+	font-size: 12px;
+
+}	
 }
