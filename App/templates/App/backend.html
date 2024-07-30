@@ -62,7 +62,12 @@
                     <th style="width: 8%;">Age</th>
                     <th style="width: 7%;">Gender</th>
                     <th style="width: 18%;">Registered</th>
+                    {% if request.user.is_superuser %}
                     <th style="width: 10%;" colspan="2">Actions</th>
+                    {% else %}
+
+                <th style="width: 10%;" colspan="2">Edit Patient</th>
+                    {% endif %}
                 </tr>      
             </thead>
             <!--DATA FROM BACKEND-->
@@ -92,23 +97,24 @@
   </div>
 </div>
            <tr id="chk_td">
-            <td>{{patient.name | title }}</td>
-            <td>{{patient.phone}}</td>
-            <td>{{patient.email}}</td>
-            <td>{{patient.age}}</td>
-            <td>{{patient.gender}}</td>
-            <td>{{patient.created_at | date:'m/d/Y (H:i)' }}</td>
+            <td data-label="Name" id="top-table">{{patient.name | title }}</td>
+            <td data-label="Phone" id="responsive-border">{{patient.phone}}</td>
+            <td  data-label="Email" id="responsive-border">{{patient.email}}</td>
+            <td  data-label="Age"id="responsive-border">{{patient.age}}</td>
+            <td  data-label="Gender" id="responsive-border">{{patient.gender}}</td>
+            <td  data-label="Registered" id="responsive-border">{{patient.created_at | date:'m/d/Y (H:i)' }}</td>
             <td>
                 <a href="{% url 'patient' patient.id  %}"  class="btn btn-primary" title="Edit patient">
                     <i class="fas fa-pen"></i>
                 </a>
             </td>
+            {% if request.user.is_superuser %}
             <td>
                 <a data-bs-toggle="modal" data-bs-target="#deleteModal{{patient.pk}}" class="btn btn-secondary" title="Delete patient">
                     <i class="fas fa-trash-alt"></i>
                 </a>
             </td>
-        
+        {% endif %}
         </tr>
 {% empty %}
 <tr>
@@ -117,7 +123,7 @@
 
    {% else %}
 
-   <td colspan="7" class="text-danger fw-bolder mt-2 mb-2">Patients' data not available data</td>
+   <td colspan="7" class="text-danger fw-bolder mt-2 mb-2">Patients' data not available</td>
 
    {% endif %}
 </tr>
@@ -180,5 +186,5 @@
 </div>  <!--End of container-->
 <!-- show this if no result is returned from the search   -->
 <span class="text-danger"></span>
-
+<br><br>
 {% endblock content %}

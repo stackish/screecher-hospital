@@ -22,10 +22,12 @@ NAVBAR
 	margin-right: 25px;
 }
 
+
 /* =================
 FOOTER
 =================
 */
+
 .wrapper{
 	min-height: 100%;
 	margin-bottom: -50px;
@@ -55,4 +57,126 @@ Patient (add.html)
 	margin-right: -50%;
 	transform: translate(-50%, -50%);
 	font-size: 22px;
+}
+
+/* ============================================================
+# LOGIN  
+==============================================================*/
+
+.icon-width{
+	width: 45px;
+}
+
+#card-login{
+	width: 450px;
+}
+
+.login-border{
+	border-top: .4rem solid #007bff;
+	border-radius: 10px;
+
+}
+
+#btn-enter{
+	border-radius: 15px;
+	font-size: 16px;
+}
+
+/* ============================================================
+# 	RESPONSIVE DESIGN  
+==============================================================*/
+
+
+
+
+
+/* ============================================================
+# 	RESPONSIVE DESIGN  	- MOBILE PHONE(1024px)
+==============================================================*/
+
+
+@media(max-width: 1024px) {
+	/* TABLE */
+
+	.table thead {
+		display: none;
+	}
+
+	.table, .table tbody, .table tr, .table td{
+		display: block;
+		width: 100%;
+	}
+
+	.table tr{
+		margin-bottom: 15px;
+		border:1px solid #111;
+		border-radius: 5px;
+	}
+
+
+	.table td{
+		text-align: right;
+		padding-left: 35%;
+		position: relative;
+		border:1px solid transparent;
+	}
+
+	.table td::before{
+		content: attr(data-label);
+		position: absolute;
+		left: 0;
+		width: 50%;
+		padding-left: 15px;
+		font-weight: bold;
+		text-align: left;
+		
+	}
+
+	.table > thead > tr:first-child {
+		display: none;
+		margin-top:5px;
+	}
+
+	#responsive-border {
+		border: 1px solid #a9a9a9;
+	}
+
+	#top-table{
+		background-color: #cfe2ff;
+		color: #111;
+		font-weight: bold;
+	}
+
+	/* Enable scrolling page on responsive */
+
+	body {
+		overflow-y: visible;
+	}
+	#btn-nav{
+		width: 75px;
+	}
+
+	#footer{
+		font-size: 12px;
+	}
+}
+
+
+/* ============================================================
+# 	RESPONSIVE DESIGN  	- TABLET (1024px)
+==============================================================*/
+
+
+@media(max-width:500px) {
+
+	#card-login{
+		width: 95%;
+	}
+
+	#btn-enter{
+		
+		font-size: 12px;
+	}
+	
+	
 }
