@@ -25,7 +25,7 @@
   <header>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
       <div class="col-sm">
-    <a class="navbar-brand flex-grow-1" style="text-align: center;color: #fff; margin-left: 25px;" href="{% url 'frontend' %}">
+    <a class="navbar-brand flex-grow-1" id="nav-content" style="text-align: center;color: #fff; margin-left: 25px;" href="{% url 'frontend' %}">
       {% block navbar-content %}
           <i class="fas fa-briefcase-medical"></i> &nbsp;&nbsp; HMO Screecher
       {% endblock navbar-content %}
@@ -54,9 +54,9 @@
 <footer class="bg-dark text-center text-lg-start text-light" id="footer">
 
   <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-    Copyright &copy; {% now "Y" %} All rights reserved | 
+    Copyright &copy; {% now "Y" %} <span id="all-rights">All rights reserved </span> | Made with 
     <i class="text-danger fas fa-heartbeat fa-fade" style="font-size: 15px;"></i>
-    <a href="#" class="text-decoration-none" style="color:#0dcaf0;">Screecher</a>
+    <a href="#" class="text-decoration-none" style="color:#0dcaf0;">by  Screecher Designs</a>
   </div>
 </footer>
 

@@ -136,7 +136,7 @@ Patient (add.html)
 		display: none;
 		margin-top:5px;
 	}
-
+/* background color  in td */
 	#responsive-border {
 		border: 1px solid #a9a9a9;
 	}
@@ -152,10 +152,11 @@ Patient (add.html)
 	body {
 		overflow-y: visible;
 	}
+	/* Button in navbar */
 	#btn-nav{
 		width: 75px;
 	}
-
+/* footer   */
 	#footer{
 		font-size: 12px;
 	}
@@ -163,7 +164,7 @@ Patient (add.html)
 
 
 /* ============================================================
-# 	RESPONSIVE DESIGN  	- TABLET (1024px)
+# 	RESPONSIVE DESIGN  	- MOBILE (500px)
 ==============================================================*/
 
 
@@ -177,6 +178,27 @@ Patient (add.html)
 		
 		font-size: 12px;
 	}
-	
+/* Hide this <span> in this mode */
+#all-rights{
+	display:none;
+}	
+
+/* fontsize in footer */
+#footer{
+	font-size: 10px;
+}
+
+/* button in navbar */
+#btn-nav{
+  width: 65px;
+  font-size: 12px;
+  margin-right: 15px;
+
+}
+
+#nav-content{
+	font-size:15px;
+	margin-left: 15px;
+}
 	
 }
